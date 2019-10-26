@@ -6,10 +6,21 @@
     <description>Recent content on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sat, 19 Oct 2019 13:36:32 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 16:23:32 -0500</lastBuildDate>
     
 	<atom:link href="https://til.hal.com.mx/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</title>
+      <link>https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/</link>
+      <pubDate>Tue, 22 Oct 2019 16:23:32 -0500</pubDate>
+      
+      <guid>https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/</guid>
+      <description>Es común que las fechas almacenadas en una tabla no se encuentren en la misma zona horaria que las necesitamos.
+Podemos cambiar la zona horaria de nuestros datos al realizar un query, sin necesidad de hacer cambios directamente a la tabla que los contiene.
+Para ello necesitamos el código de la la zona horario en la que han sido almacenados los datos y el código de la zona a la que deseamos cambiarlos.</description>
+    </item>
     
     <item>
       <title>Aplicar una funcion a un data frame, por renglon, usando purrr</title>

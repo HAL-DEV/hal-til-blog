@@ -6,10 +6,19 @@
     <description>Recent content in Tags on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sat, 19 Oct 2019 13:36:32 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 16:23:32 -0500</lastBuildDate>
     
 	<atom:link href="https://til.hal.com.mx/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>sql</title>
+      <link>https://til.hal.com.mx/tags/sql/</link>
+      <pubDate>Tue, 22 Oct 2019 16:23:32 -0500</pubDate>
+      
+      <guid>https://til.hal.com.mx/tags/sql/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>r</title>
