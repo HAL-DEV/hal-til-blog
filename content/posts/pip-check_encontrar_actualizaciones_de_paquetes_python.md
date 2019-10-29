@@ -21,7 +21,7 @@ Como una alternativa al proceso anterior, tenemos `pip-check`, una herramienta q
 
 * Listado de paquetes instalados
 * Paquetes que tienen una versión nueva disponible
-* El tiepo de versión nueva disponible (minor o major release)
+* El tipo de versión nueva disponible (minor o major release)
 * Ligas a las páginas de cada paquete.
 
 Podemos instalar `pip-check` usando `pip`.
