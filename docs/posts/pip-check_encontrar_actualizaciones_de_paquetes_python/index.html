@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title> Aplicar una funcion a un data frame, por renglon, usando purrr | HAL Today I Learned</title>
+  <title> pip-check para encontrar actualizaciones de paquetes de Python | HAL Today I Learned</title>
 
   
   
@@ -117,7 +117,7 @@
   <article class="post entry">
     
       <header class="entry-header">
-        <h1 class="entry-title">Aplicar una funcion a un data frame, por renglon, usando purrr</h1>
+        <h1 class="entry-title">pip-check para encontrar actualizaciones de paquetes de Python</h1>
         <div class="entry-meta">
           <span class="posted-on">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -130,7 +130,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/aplicar_funcion_por_renglon_usando_purrr/">October 19, 2019</a>
+  <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">October 28, 2019</a>
 </span>
 
 
@@ -146,7 +146,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>
+  <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>
 </span>
 
 
@@ -156,54 +156,40 @@
       </header>
     
     <div class="entry-content">
-      <p><code>purrr</code> es un paquete de <code>tidyverse</code> que agrega características de programación funcional a R.</p>
+      <p>Generalmente es buena verificar que la versión de los paquetes de Python que estamos usando en un proyecto sean las apropiadas.</p>
 
-<p>Entre otras cosas, incluye la familia de funciones <code>map()</code>, que aplican una función a todos los elementos de una lista, de la misma manera a la familia de funciones <code>apply()</code> de <code>base</code>, pero con una mejor sintaxis y caraterísticas adicionales.</p>
+<p>Con <code>pip list</code> podemos ver una lista de todos los paquetes de python que tenemos instalados, así como la versión de cada uno de ellos. Si agregamos el flag <code>--outdated</code> obtenemos una lista de los paquetes para los cuales existe una versión más reciente.</p>
 
-<p>Al usar <code>map()</code> con un data frame, entonces la función es aplicada por columna.</p>
-
-<p>Hay ocasiones en las necesitamos aplicar una función por renglón.</p>
-
-<p>Usando <code>apply()</code>, basta con especificar el argumento <code>MARGIN = 1</code> para aplicar una función por renglón.</p>
-
-<p>Por ejemplo, para sumar todos los datos de cada renglon de un data frame.</p>
-
-<pre><code class="language-r">apply(mi_df, sum, MARGIN = 1)
+<pre><code class="language-shell">pip list --outdated
 </code></pre>
 
-<p><code>map()</code> no tiene un argumento <code>MARGIN</code>, pero tenemos la función <code>pmap()</code> en <code>purrr</code> que puede aplicar una función a cada renglón de un data frame.</p>
+<p>Una vez identificado un paquete con una nueva versión que deseamos actualizar, usamos <code>pip install --upgrade *nombre del paquete*</code>.</p>
 
-<pre><code class="language-r">pmap(mid_df, sum)
+<p>Como una alternativa al proceso anterior, tenemos <code>pip-check</code>, una herramienta que nos devuelve la siguiente información con una presentación más amigable para el usuario:</p>
+
+<ul>
+<li>Listado de paquetes instalados</li>
+<li>Paquetes que tienen una versión nueva disponible</li>
+<li>El tipo de versión nueva disponible (minor o major release)</li>
+<li>Ligas a las páginas de cada paquete.</li>
+</ul>
+
+<p>Podemos instalar <code>pip-check</code> usando <code>pip</code>.</p>
+
+<pre><code class="language-shell">pip install pip-check
 </code></pre>
 
-<p>Notarás que lo anterior solo funciona si todos los elementos de un cada renglón son numéricos, es decir, del tipo de dato que espera la función.</p>
+<p>Ya instalado, simplemente usamos el comando <code>pip-check</code> en la terminal.</p>
 
-<p>Esto es porque <code>pmap()</code>, en realidad, está tomando todos los elementos de una lista como argumentos de la función que estamos aplicando.</p>
-
-<p>Por ejemplo, tomando las dos primeras columnas de <strong>iris</strong>, podemos hacer algo como lo siguiente.</p>
-
-<pre><code class="language-r">pmap(iris[1:2], function(Sepal.Length, Sepal.Width) {
-  Sepal.Length + Sepal.Width
-})
+<pre><code class="language-shell">pip-check
 </code></pre>
 
-<p>El resultado será una lista con 150 valores numéricos, que es la cantidad de renglones de iris.</p>
+<p>Si lo deseamos, podemos podemos usar el flag <code>-H</code> para que sólo se muestren los paquetes que tienen una nueva versión disponible.</p>
 
-<p>Si deseas usar <code>pmap()</code> con data frames, debes hacer referencia a todos los nombres de columnas, aunque no sean usados en la función, de lo contrario, obtendrás un error.</p>
-
-<p>Los siguiente funciona.</p>
-
-<pre><code class="language-r">pmap(iris, function(Sepal.Length, Sepal.Width, Petal.Length,Petal.Width, Species) {
-    Petal.Width ^ 2
-})
+<pre><code class="language-shell">pip-check -H
 </code></pre>
 
-<p>Pero lo siguiente no</p>
-
-<pre><code class="language-r">pmap(iris, function(Petal.Width) {
-    Petal.Width ^ 2
-})
-</code></pre>
+<p>Y finalmente, instalamos las actualizaciones que nos interesan con <code>pip install --upgrade</code></p>
 
     </div>
     <div class="entry-footer">
@@ -218,7 +204,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/aplicar_funcion_por_renglon_usando_purrr/">October 19, 2019</a>
+  <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">October 28, 2019</a>
 </span>
 
 
@@ -234,7 +220,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>
+  <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>
 </span>
 
 
@@ -247,27 +233,41 @@
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/feather_data_frames_para_python_r/" rel="prev">
+          <a href="https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
-            <span class="post-title">Feather: data frames para Python y R</span>
+            <span class="post-title">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</span>
           </a>
         </div>
       
       
-      <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/" rel="next">
-          <span class="meta-nav" aria-hidden="true">Next post</span>
-          <span class="screen-reader-text">Next post:</span>
-          <br>
-          <span class="post-title">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</span>
-        </a>
-      </div>
-    
     </div>
   </nav>
 
+  
+    <div class="comments-area">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "today-i-learned-hal" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
   
 
         </main>
