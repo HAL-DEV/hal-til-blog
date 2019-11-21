@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgres on HAL Today I Learned</title>
+    <link>https://til.hal.com.mx/tags/postgres/</link>
+    <description>Recent content in postgres on HAL Today I Learned</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Sat, 16 Nov 2019 10:56:55 -0600</lastBuildDate>
+    
+	<atom:link href="https://til.hal.com.mx/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>regex en postgres</title>
+      <link>https://til.hal.com.mx/posts/regex_en_postgres/</link>
+      <pubDate>Sat, 16 Nov 2019 10:56:55 -0600</pubDate>
+      
+      <guid>https://til.hal.com.mx/posts/regex_en_postgres/</guid>
+      <description>Al hacer un query es frecuente que necesitemos encontrar registros de texto que coincidan con algunas reglas. Lo más común es buscar registros que contienen, inician o terminan con una cadena de texto en particular.
+Para esta tarea, generalmente usamos el operador LIKE con algunos comodines (wildcards).
+Por ejemplo, usamos lo siguiente para buscar los registros en la columna &amp;ldquo;email&amp;rdquo; de la tabla &amp;ldquo;clientes&amp;rdquo;, que terminen con &amp;ldquo;dominio.com&amp;rdquo;.
+SELECT * FROM clientes WHERE email LIKE &#39;%dominio.</description>
+    </item>
+    
+  </channel>
+</rss>

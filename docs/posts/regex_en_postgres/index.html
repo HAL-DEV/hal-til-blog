@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title> Posts | HAL Today I Learned</title>
+  <title> regex en postgres | HAL Today I Learned</title>
 
   
   
@@ -106,19 +106,172 @@
       </div>
 
       
-        
-      
+  
+
     </header>
 
     <div id="content" class="site-content">
       <section id="primary" class="content-area">
         <main id="main" class="site-main">
           
+  <article class="post entry">
+    
+      <header class="entry-header">
+        <h1 class="entry-title">regex en postgres</h1>
+        <div class="entry-meta">
+          <span class="posted-on">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+      <path id="a" d="M0 0h24v24H0V0z"></path>
+  </defs>
+  <clipPath id="b">
+      <use xlink:href="#a" overflow="visible"></use>
+  </clipPath>
+  <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
+</svg>
   
+  <a href="/posts/regex_en_postgres/">November 16, 2019</a>
+</span>
+
+
+
+<span class="tags-links">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+	<path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"></path>
+	<path d="M0 0h24v24H0z" fill="none"></path>
+</svg>
+  <span class="screen-reader-text">Posted in</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a href="https://til.hal.com.mx/tags/postgres/" rel="category tag">postgres</a>, <a href="https://til.hal.com.mx/tags/postgresql/" rel="category tag">postgresql</a>
+</span>
 
 
 
 
+        </div>
+      </header>
+    
+    <div class="entry-content">
+      <p>Al hacer un query es frecuente que necesitemos encontrar registros de texto que coincidan con algunas reglas. Lo más común es buscar registros que contienen, inician o terminan con una cadena de texto en particular.</p>
+
+<p>Para esta tarea, generalmente usamos el operador <code>LIKE</code> con algunos comodines (wildcards).</p>
+
+<p>Por ejemplo, usamos lo siguiente para buscar los registros en la columna &ldquo;email&rdquo; de la tabla &ldquo;clientes&rdquo;, que terminen con &ldquo;dominio.com&rdquo;.</p>
+
+<pre><code class="language-postgresql">SELECT * FROM clientes
+WHERE email LIKE '%dominio.com'
+</code></pre>
+
+<p>Sin embargo, hay ocasiones en el texto que buscamos debe coincidir con reglas más complejas. En estos casos usamos expresiones regulares (regex).</p>
+
+<p>En postgres tenemos el operador <code>SIMILAR TO</code> para buscar usando regex.</p>
+
+<p>Por ejemplo, supongamos que busco correos electrónicos con un nombre de dominio en particular, pero que puede terminar en &ldquo;com&rdquo;, &ldquo;net&rdquo; o &ldquo;mx&rdquo;.</p>
+
+<p>Puedo realizar esta tarea de la siguiente manera.</p>
+
+<pre><code class="language-postgresql">SELECT * FROM clientes
+WHERE email SIMILAR TO '%dominio.(com|net|mx)'
+</code></pre>
+
+<p>Notarás que de usamos un wildcard de SQL en la cadena que buscamo. <code>SIMILAR TO</code> es un híbrido entre <code>LIKE</code> y regex, lo cual puede ser un poco confuso y afecta a su desempeño.</p>
+
+<p>Por fortuna, contamos con el operador <code>~</code>. Este operador es más eficiente que <code>SIMILAR TO</code> y únicamente acepta regex por lo que es más consistente.</p>
+
+<pre><code class="language-postgresql">SELECT * FROM clientes
+WHERE email ~'dominio.(com|net|mx)$'
+</code></pre>
+
+    </div>
+    <div class="entry-footer">
+      <span class="posted-on">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+      <path id="a" d="M0 0h24v24H0V0z"></path>
+  </defs>
+  <clipPath id="b">
+      <use xlink:href="#a" overflow="visible"></use>
+  </clipPath>
+  <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
+</svg>
+  
+  <a href="/posts/regex_en_postgres/">November 16, 2019</a>
+</span>
+
+
+
+<span class="tags-links">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+	<path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"></path>
+	<path d="M0 0h24v24H0z" fill="none"></path>
+</svg>
+  <span class="screen-reader-text">Posted in</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a href="https://til.hal.com.mx/tags/postgres/" rel="category tag">postgres</a>, <a href="https://til.hal.com.mx/tags/postgresql/" rel="category tag">postgresql</a>
+</span>
+
+
+
+
+    </div>
+  </article>
+  <nav class="navigation post-navigation" role="navigation">
+    <h2 class="screen-reader-text">Post navigation</h2>
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="https://til.hal.com.mx/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/" rel="prev">
+            <span class="meta-nav" aria-hidden="true">Previous post</span>
+            <span class="screen-reader-text">Previous post:</span>
+            <br>
+            <span class="post-title">pip-check para encontrar actualizaciones de paquetes de Python</span>
+          </a>
+        </div>
+      
+      
+    </div>
+  </nav>
+
+  
+    <div class="comments-area">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "today-i-learned-hal" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  
 
         </main>
       </section>
