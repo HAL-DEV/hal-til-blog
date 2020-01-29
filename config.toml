@@ -11,7 +11,7 @@ disqusShortname = "today-i-learned-hal"
     accent_color = "#EE0000"
     body_font = "Source Sans Pro"
     using_google_fonts = 1
-    code_theme = "shades-of-purple"
+    code_theme = "night-owl"
 
 [menu]
     [[menu.social]]
