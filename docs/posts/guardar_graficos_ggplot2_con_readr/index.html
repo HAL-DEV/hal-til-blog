@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title> regex en postgres | HAL Today I Learned</title>
+  <title> Guardar gráficos de ggplot2 con readr | HAL Today I Learned</title>
 
   
   
@@ -133,7 +133,7 @@
   <article class="post entry">
     
       <header class="entry-header">
-        <h1 class="entry-title">regex en postgres</h1>
+        <h1 class="entry-title">Guardar gráficos de ggplot2 con readr</h1>
         <div class="entry-meta">
           <span class="posted-on">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/regex_en_postgres/">November 16, 2019</a>
+  <a href="/posts/guardar_graficos_ggplot2_con_readr/">January 29, 2020</a>
 </span>
 
 
@@ -166,7 +166,11 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/postgres/" rel="category tag">postgres</a>, <a href="https://til.hal.com.mx/tags/postgresql/" rel="category tag">postgresql</a>
+  
+  
+  
+  
+  <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>, <a href="https://til.hal.com.mx/tags/tidyverse/" rel="category tag">tidyverse</a>, <a href="https://til.hal.com.mx/tags/ggplot2/" rel="category tag">ggplot2</a>
 </span>
 
 
@@ -176,35 +180,46 @@
       </header>
     
     <div class="entry-content">
-      <p>Al hacer un query es frecuente que necesitemos encontrar registros de texto que coincidan con algunas reglas. Lo más común es buscar registros que contienen, inician o terminan con una cadena de texto en particular.</p>
+      <p>La principal ventaja de crear gráficos con <em>ggplot2</em> es que tienes control fino de todos los elementos que los conforman.</p>
 
-<p>Para esta tarea, generalmente usamos el operador <code>LIKE</code> con algunos comodines (wildcards).</p>
+<p>Esta característica puede convertirse en una desventaja cuando has generado gráficos que contienen un gran número de partes y ajustes para cada una de ellas, pues esto siempre resulta en código más bien complejo.</p>
 
-<p>Por ejemplo, usamos lo siguiente para buscar los registros en la columna &ldquo;email&rdquo; de la tabla &ldquo;clientes&rdquo;, que terminen con &ldquo;dominio.com&rdquo;.</p>
+<p>La principal manera para lidiar con esta complejidad es guardar los gráficos generados con <em>ggplot2</em> en objetos, para así poder manipularlos más adelante, sin necesidad de reusar tanto código.</p>
 
-<pre><code class="language-postgresql">SELECT * FROM clientes
-WHERE email LIKE '%dominio.com'
+<p>Por ejemplo, guardamos un plot con sus elementos principales en el objeto <code>mi_plot</code>.</p>
+
+<pre><code class="language-r">mi_plot &lt;- 
+    ggplot(iris) +
+    aes(x = Petal.Width, y = Petal.Length) +
+    geom_point()
 </code></pre>
 
-<p>Sin embargo, hay ocasiones en el texto que buscamos debe coincidir con reglas más complejas. En estos casos usamos expresiones regulares (regex).</p>
+<p>Y más adelante podemos modificarlo, por ejemplo, agregando un <code>aes</code> nuevo y un tema.</p>
 
-<p>En postgres tenemos el operador <code>SIMILAR TO</code> para buscar usando regex.</p>
-
-<p>Por ejemplo, supongamos que busco correos electrónicos con un nombre de dominio en particular, pero que puede terminar en &ldquo;com&rdquo;, &ldquo;net&rdquo; o &ldquo;mx&rdquo;.</p>
-
-<p>Puedo realizar esta tarea de la siguiente manera.</p>
-
-<pre><code class="language-postgresql">SELECT * FROM clientes
-WHERE email SIMILAR TO '%dominio.(com|net|mx)'
+<pre><code class="language-r">mi_plot +
+    aes(color = Species) +
+    theme_bw()
 </code></pre>
 
-<p>Notarás que de usamos un wildcard de SQL en la cadena que buscamo. <code>SIMILAR TO</code> es un híbrido entre <code>LIKE</code> y regex, lo cual puede ser un poco confuso y afecta a su desempeño.</p>
+<p>Esto es suficiente si estamos trabajando una misma sesión, pero es común que necesitemos un gráfico en múltiples sesiones de trabajo o colaborando con otras personas.</p>
 
-<p>Por fortuna, contamos con el operador <code>~</code>. Este operador es más eficiente que <code>SIMILAR TO</code> y únicamente acepta regex por lo que es más consistente.</p>
+<p>Una opción común es implemente hacer <code>source()</code> al código que genera los gráficos a usar y así cargarlos a nuestro espacio de trabajo.</p>
 
-<pre><code class="language-postgresql">SELECT * FROM clientes
-WHERE email ~'dominio.(com|net|mx)$'
+<p>Pero, además tenemos la opción de usando las funciones <code>write_rds()</code> y <code>read_rds()</code> de <em>readr</em>, uno de los paquetes del <em>tidyverse</em>, para guardar nuestros gráficos a un archivo como un objeto de R que podemos manipular más adelante.</p>
+
+<p>De este modo, podemos guardar un gráfico, o lista de gráficos, a un archivo de la siguiente manera.</p>
+
+<pre><code class="language-r">write_rds(mi_plot, &quot;mi_plot.rds&quot;)
 </code></pre>
+
+<p>Para después cargarlo a nuestro entorno de trabajo.</p>
+
+<pre><code class="language-r">mi_plot &lt;- read_rds(&quot;mi_plot.rds&quot;)
+</code></pre>
+
+<p>Esta operación no se puede realizar con las funciones <code>save()</code> y <code>readRDS()</code> de <em>base</em>, aunque estas también trabajan con archivos <code>.rds</code>.</p>
+
+<p>Naturalmente, hay que tener cuidado de compatibilidad entre versiones de paquetes al exportar e importar archivos <code>.rds</code>, para evitar pérdida de información.</p>
 
     </div>
     <div class="entry-footer">
@@ -219,7 +234,7 @@ WHERE email ~'dominio.(com|net|mx)$'
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/regex_en_postgres/">November 16, 2019</a>
+  <a href="/posts/guardar_graficos_ggplot2_con_readr/">January 29, 2020</a>
 </span>
 
 
@@ -239,7 +254,11 @@ WHERE email ~'dominio.(com|net|mx)$'
   
   
   
-  <a href="https://til.hal.com.mx/tags/postgres/" rel="category tag">postgres</a>, <a href="https://til.hal.com.mx/tags/postgresql/" rel="category tag">postgresql</a>
+  
+  
+  
+  
+  <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>, <a href="https://til.hal.com.mx/tags/tidyverse/" rel="category tag">tidyverse</a>, <a href="https://til.hal.com.mx/tags/ggplot2/" rel="category tag">ggplot2</a>
 </span>
 
 
@@ -252,24 +271,15 @@ WHERE email ~'dominio.(com|net|mx)$'
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/" rel="prev">
+          <a href="https://til.hal.com.mx/posts/regex_en_postgres/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
-            <span class="post-title">pip-check para encontrar actualizaciones de paquetes de Python</span>
+            <span class="post-title">regex en postgres</span>
           </a>
         </div>
       
       
-      <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/guardar_graficos_ggplot2_con_readr/" rel="next">
-          <span class="meta-nav" aria-hidden="true">Next post</span>
-          <span class="screen-reader-text">Next post:</span>
-          <br>
-          <span class="post-title">Guardar gráficos de ggplot2 con readr</span>
-        </a>
-      </div>
-    
     </div>
   </nav>
 

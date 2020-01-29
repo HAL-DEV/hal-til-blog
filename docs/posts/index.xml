@@ -6,10 +6,21 @@
     <description>Recent content in Posts on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sat, 16 Nov 2019 10:56:55 -0600</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 13:38:05 -0600</lastBuildDate>
     
 	<atom:link href="https://til.hal.com.mx/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Guardar gráficos de ggplot2 con readr</title>
+      <link>https://til.hal.com.mx/posts/guardar_graficos_ggplot2_con_readr/</link>
+      <pubDate>Wed, 29 Jan 2020 13:38:05 -0600</pubDate>
+      
+      <guid>https://til.hal.com.mx/posts/guardar_graficos_ggplot2_con_readr/</guid>
+      <description>La principal ventaja de crear gráficos con ggplot2 es que tienes control fino de todos los elementos que los conforman.
+Esta característica puede convertirse en una desventaja cuando has generado gráficos que contienen un gran número de partes y ajustes para cada una de ellas, pues esto siempre resulta en código más bien complejo.
+La principal manera para lidiar con esta complejidad es guardar los gráficos generados con ggplot2 en objetos, para así poder manipularlos más adelante, sin necesidad de reusar tanto código.</description>
+    </item>
     
     <item>
       <title>regex en postgres</title>
