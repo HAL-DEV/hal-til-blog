@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://til.hal.com.mx/posts/crear_secuencia_de_fechas_sql_server/</loc>
+    <lastmod>2020-03-29T22:00:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/</loc>
+    <lastmod>2020-03-29T22:00:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/posts/</loc>
+    <lastmod>2020-03-29T22:00:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/tags/sql/</loc>
+    <lastmod>2020-03-29T22:00:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/tags/sql-server/</loc>
+    <lastmod>2020-03-29T22:00:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/tags/</loc>
+    <lastmod>2020-03-29T22:00:26-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://til.hal.com.mx/tags/ggplot2/</loc>
     <lastmod>2020-01-29T13:38:05-06:00</lastmod>
   </url>
@@ -13,22 +43,7 @@
   </url>
   
   <url>
-    <loc>https://til.hal.com.mx/</loc>
-    <lastmod>2020-01-29T13:38:05-06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://til.hal.com.mx/posts/</loc>
-    <lastmod>2020-01-29T13:38:05-06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://til.hal.com.mx/tags/r/</loc>
-    <lastmod>2020-01-29T13:38:05-06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://til.hal.com.mx/tags/</loc>
     <lastmod>2020-01-29T13:38:05-06:00</lastmod>
   </url>
   
@@ -64,11 +79,6 @@
   
   <url>
     <loc>https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/</loc>
-    <lastmod>2019-10-22T16:23:32-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://til.hal.com.mx/tags/sql/</loc>
     <lastmod>2019-10-22T16:23:32-05:00</lastmod>
   </url>
   
