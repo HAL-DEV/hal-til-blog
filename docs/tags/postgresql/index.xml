@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>postgresql on HAL Today I Learned</title>
@@ -20,7 +20,7 @@
       <description>Al hacer un query es frecuente que necesitemos encontrar registros de texto que coincidan con algunas reglas. Lo más común es buscar registros que contienen, inician o terminan con una cadena de texto en particular.
 Para esta tarea, generalmente usamos el operador LIKE con algunos comodines (wildcards).
 Por ejemplo, usamos lo siguiente para buscar los registros en la columna &amp;ldquo;email&amp;rdquo; de la tabla &amp;ldquo;clientes&amp;rdquo;, que terminen con &amp;ldquo;dominio.com&amp;rdquo;.
-SELECT * FROM clientes WHERE email LIKE &#39;%dominio.</description>
+SELECT * FROM clientes WHERE email LIKE &amp;#39;%dominio.</description>
     </item>
     
   </channel>

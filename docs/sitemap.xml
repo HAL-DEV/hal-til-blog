@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -110,6 +110,16 @@
   <url>
     <loc>https://til.hal.com.mx/posts/procesar_csv_admin_django/</loc>
     <lastmod>2019-10-05T09:03:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/drafts/</loc>
+    <lastmod>2019-10-03T19:40:15-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://til.hal.com.mx/drafts/elementos_que_permiten_crear_un_contenedor/</loc>
+    <lastmod>2019-10-03T19:40:15-05:00</lastmod>
   </url>
   
   <url>
