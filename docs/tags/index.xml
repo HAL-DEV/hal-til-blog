@@ -2,111 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on HAL Today I Learned</title>
-    <link>https://til.hal.com.mx/tags/</link>
+    <link>https://hal-dev.github.io/hal-til-blog/tags/</link>
     <description>Recent content in Tags on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
     <lastBuildDate>Sun, 29 Mar 2020 22:00:26 -0600</lastBuildDate>
     
-	<atom:link href="https://til.hal.com.mx/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hal-dev.github.io/hal-til-blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>sql</title>
-      <link>https://til.hal.com.mx/tags/sql/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/sql/</link>
       <pubDate>Sun, 29 Mar 2020 22:00:26 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/sql/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sql server</title>
-      <link>https://til.hal.com.mx/tags/sql-server/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/sql-server/</link>
       <pubDate>Sun, 29 Mar 2020 22:00:26 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/sql-server/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/sql-server/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggplot2</title>
-      <link>https://til.hal.com.mx/tags/ggplot2/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/ggplot2/</link>
       <pubDate>Wed, 29 Jan 2020 13:38:05 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/ggplot2/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>r</title>
-      <link>https://til.hal.com.mx/tags/r/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/r/</link>
       <pubDate>Wed, 29 Jan 2020 13:38:05 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/r/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidyverse</title>
-      <link>https://til.hal.com.mx/tags/tidyverse/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/tidyverse/</link>
       <pubDate>Wed, 29 Jan 2020 13:38:05 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/tidyverse/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/tidyverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>postgres</title>
-      <link>https://til.hal.com.mx/tags/postgres/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/postgres/</link>
       <pubDate>Sat, 16 Nov 2019 10:56:55 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/postgres/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/postgres/</guid>
       <description></description>
     </item>
     
     <item>
       <title>postgresql</title>
-      <link>https://til.hal.com.mx/tags/postgresql/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/postgresql/</link>
       <pubDate>Sat, 16 Nov 2019 10:56:55 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/postgresql/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/postgresql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://til.hal.com.mx/tags/python/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/python/</link>
       <pubDate>Mon, 28 Oct 2019 15:33:34 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/python/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>csv</title>
-      <link>https://til.hal.com.mx/tags/csv/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/csv/</link>
       <pubDate>Sat, 05 Oct 2019 09:03:38 -0500</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/csv/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/csv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Django</title>
-      <link>https://til.hal.com.mx/tags/django/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/django/</link>
       <pubDate>Sat, 05 Oct 2019 09:03:38 -0500</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/django/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/django/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Django Admin</title>
-      <link>https://til.hal.com.mx/tags/django-admin/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/tags/django-admin/</link>
       <pubDate>Sat, 05 Oct 2019 09:03:38 -0500</pubDate>
       
-      <guid>https://til.hal.com.mx/tags/django-admin/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/tags/django-admin/</guid>
       <description></description>
     </item>
     

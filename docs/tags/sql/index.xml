@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sql on HAL Today I Learned</title>
-    <link>https://til.hal.com.mx/tags/sql/</link>
+    <link>https://hal-dev.github.io/hal-til-blog/tags/sql/</link>
     <description>Recent content in sql on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
     <lastBuildDate>Sun, 29 Mar 2020 22:00:26 -0600</lastBuildDate>
     
-	<atom:link href="https://til.hal.com.mx/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hal-dev.github.io/hal-til-blog/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Crear una secuencia de fechas en SQL Server</title>
-      <link>https://til.hal.com.mx/posts/crear_secuencia_de_fechas_sql_server/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/posts/crear_secuencia_de_fechas_sql_server/</link>
       <pubDate>Sun, 29 Mar 2020 22:00:26 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/posts/crear_secuencia_de_fechas_sql_server/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/posts/crear_secuencia_de_fechas_sql_server/</guid>
       <description>Crear una secuencia de fechas durante una consulta es una herramienta útil para crear series de tiempo completas, realizar comparaciones y verificar la integridad de datos, entre otras aplicaciones.
 Por ejemplo, podemos pasar de tener datos como los siguientes:
    fecha valor     2020-01-01 1   2020-01-03 1   2020-01-05 1    A datos como estos:
@@ -25,10 +25,10 @@ Por ejemplo, podemos pasar de tener datos como los siguientes:
     
     <item>
       <title>Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</title>
-      <link>https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/posts/cambiar_zona_horaria_query_sql/</link>
       <pubDate>Tue, 22 Oct 2019 16:23:32 -0500</pubDate>
       
-      <guid>https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/posts/cambiar_zona_horaria_query_sql/</guid>
       <description>Es común que las fechas almacenadas en una tabla no se encuentren en la misma zona horaria que las necesitamos.
 Podemos cambiar la zona horaria de nuestros datos al realizar un query, sin necesidad de hacer cambios directamente a la tabla que los contiene.
 Para ello necesitamos el código de la la zona horario en la que han sido almacenados los datos y el código de la zona a la que deseamos cambiarlos.</description>

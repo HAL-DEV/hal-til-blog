@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sql server on HAL Today I Learned</title>
-    <link>https://til.hal.com.mx/tags/sql-server/</link>
+    <link>https://hal-dev.github.io/hal-til-blog/tags/sql-server/</link>
     <description>Recent content in sql server on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
     <lastBuildDate>Sun, 29 Mar 2020 22:00:26 -0600</lastBuildDate>
     
-	<atom:link href="https://til.hal.com.mx/tags/sql-server/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hal-dev.github.io/hal-til-blog/tags/sql-server/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Crear una secuencia de fechas en SQL Server</title>
-      <link>https://til.hal.com.mx/posts/crear_secuencia_de_fechas_sql_server/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/posts/crear_secuencia_de_fechas_sql_server/</link>
       <pubDate>Sun, 29 Mar 2020 22:00:26 -0600</pubDate>
       
-      <guid>https://til.hal.com.mx/posts/crear_secuencia_de_fechas_sql_server/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/posts/crear_secuencia_de_fechas_sql_server/</guid>
       <description>Crear una secuencia de fechas durante una consulta es una herramienta útil para crear series de tiempo completas, realizar comparaciones y verificar la integridad de datos, entre otras aplicaciones.
 Por ejemplo, podemos pasar de tener datos como los siguientes:
    fecha valor     2020-01-01 1   2020-01-03 1   2020-01-05 1    A datos como estos:

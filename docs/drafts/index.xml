@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Drafts on HAL Today I Learned</title>
-    <link>https://til.hal.com.mx/drafts/</link>
+    <link>https://hal-dev.github.io/hal-til-blog/drafts/</link>
     <description>Recent content in Drafts on HAL Today I Learned</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
     <lastBuildDate>Thu, 03 Oct 2019 19:40:15 -0500</lastBuildDate>
     
-	<atom:link href="https://til.hal.com.mx/drafts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hal-dev.github.io/hal-til-blog/drafts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Elementos que permiten crear un contenedor</title>
-      <link>https://til.hal.com.mx/drafts/elementos_que_permiten_crear_un_contenedor/</link>
+      <link>https://hal-dev.github.io/hal-til-blog/drafts/elementos_que_permiten_crear_un_contenedor/</link>
       <pubDate>Thu, 03 Oct 2019 19:40:15 -0500</pubDate>
       
-      <guid>https://til.hal.com.mx/drafts/elementos_que_permiten_crear_un_contenedor/</guid>
+      <guid>https://hal-dev.github.io/hal-til-blog/drafts/elementos_que_permiten_crear_un_contenedor/</guid>
       <description>En una clase de contenedores aprendimos:
  Namespaces - Lo que puedo ver Control groups - A qué tengo acceso File Systems -  unshare -h
 UTS</description>

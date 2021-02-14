@@ -1,4 +1,4 @@
-baseURL = "https://til.hal.com.mx/"
+baseURL = "https://hal-dev.github.io/hal-til-blog"
 languageCode = "es-mx"
 title = "HAL Today I Learned"
 theme="twentynineteen-hal"
