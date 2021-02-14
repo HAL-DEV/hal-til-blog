@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">October 28, 2019</a>
+  <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">October 28, 2019</a>
 </span>
 
 
@@ -162,7 +162,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/python/" rel="category tag">python</a>
 </span>
 
 
@@ -173,39 +173,23 @@
     
     <div class="entry-content">
       <p>Generalmente es buena verificar que la versión de los paquetes de Python que estamos usando en un proyecto sean las apropiadas.</p>
-
 <p>Con <code>pip list</code> podemos ver una lista de todos los paquetes de python que tenemos instalados, así como la versión de cada uno de ellos. Si agregamos el flag <code>--outdated</code> obtenemos una lista de los paquetes para los cuales existe una versión más reciente.</p>
-
-<pre><code class="language-shell">pip list --outdated
-</code></pre>
-
-<p>Una vez identificado un paquete con una nueva versión que deseamos actualizar, usamos <code>pip install --upgrade *nombre del paquete*</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip list --outdated
+</code></pre></div><p>Una vez identificado un paquete con una nueva versión que deseamos actualizar, usamos <code>pip install --upgrade *nombre del paquete*</code>.</p>
 <p>Como una alternativa al proceso anterior, tenemos <code>pip-check</code>, una herramienta que nos devuelve la siguiente información con una presentación más amigable para el usuario:</p>
-
 <ul>
 <li>Listado de paquetes instalados</li>
 <li>Paquetes que tienen una versión nueva disponible</li>
 <li>El tipo de versión nueva disponible (minor o major release)</li>
 <li>Ligas a las páginas de cada paquete.</li>
 </ul>
-
 <p>Podemos instalar <code>pip-check</code> usando <code>pip</code>.</p>
-
-<pre><code class="language-shell">pip install pip-check
-</code></pre>
-
-<p>Ya instalado, simplemente usamos el comando <code>pip-check</code> en la terminal.</p>
-
-<pre><code class="language-shell">pip-check
-</code></pre>
-
-<p>Si lo deseamos, podemos podemos usar el flag <code>-H</code> para que sólo se muestren los paquetes que tienen una nueva versión disponible.</p>
-
-<pre><code class="language-shell">pip-check -H
-</code></pre>
-
-<p>Y finalmente, instalamos las actualizaciones que nos interesan con <code>pip install --upgrade</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install pip-check
+</code></pre></div><p>Ya instalado, simplemente usamos el comando <code>pip-check</code> en la terminal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip-check
+</code></pre></div><p>Si lo deseamos, podemos podemos usar el flag <code>-H</code> para que sólo se muestren los paquetes que tienen una nueva versión disponible.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip-check -H
+</code></pre></div><p>Y finalmente, instalamos las actualizaciones que nos interesan con <code>pip install --upgrade</code></p>
 
     </div>
     <div class="entry-footer">
@@ -220,7 +204,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">October 28, 2019</a>
+  <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">October 28, 2019</a>
 </span>
 
 
@@ -236,7 +220,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/python/" rel="category tag">python</a>
 </span>
 
 
@@ -249,7 +233,7 @@
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/cambiar_zona_horaria_query_sql/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/cambiar_zona_horaria_query_sql/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -259,7 +243,7 @@
       
       
       <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/regex_en_postgres/" rel="next">
+        <a href="https://hal-dev.github.io/hal-til-blog/posts/regex_en_postgres/" rel="next">
           <span class="meta-nav" aria-hidden="true">Next post</span>
           <span class="screen-reader-text">Next post:</span>
           <br>
@@ -303,7 +287,7 @@
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -317,23 +301,23 @@
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -345,47 +329,47 @@
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -395,7 +379,7 @@
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -415,7 +399,7 @@
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>

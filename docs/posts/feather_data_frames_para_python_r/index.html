@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/feather_data_frames_para_python_r/">October 11, 2019</a>
+  <a href="../../posts/feather_data_frames_para_python_r/">October 11, 2019</a>
 </span>
 
 
@@ -166,7 +166,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>, <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/python/" rel="category tag">python</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/r/" rel="category tag">r</a>
 </span>
 
 
@@ -176,66 +176,32 @@
       </header>
     
     <div class="entry-content">
-      
-
-<p>Frecuentemente necesito usar en R un data frame generado en Python por Pandas, o viceversa, tengo datos en un data frame de R que quiero usar en Python.</p>
-
+      <p>Frecuentemente necesito usar en R un data frame generado en Python por Pandas, o viceversa, tengo datos en un data frame de R que quiero usar en Python.</p>
 <p>Una manera común para compartir data frames entre Python y R es exportarlas como archivos CSV. Este método tiene el inconveniente de que perdemos los metadatos de nuestro data frame.</p>
-
 <p>Si tenemos datos de fecha con husos horarios, factores de R, texto con codificación específica o con cualquier otro metadato, este se pierde al exportar un data frame a CSV.
 Es posible que los datos que creímos exportar en Python no sean los mismos que importamos en R.</p>
-
 <p>Para compartir data frames entre Python y R de manera que no perdamos información, podemos usar el formato de archivo Feather. Si guardamos un data frame como un archivo feather, será legible por Python y por R, sin pérdida contenido.</p>
-
 <p>Para usar este formato, tenemos que instalar el paquete Feather en Python y R.</p>
-
 <h2 id="instalación-y-uso-en-python">Instalación y uso en Python</h2>
-
 <p>Podemos instalar feather con <code>pip</code>.</p>
-
 <pre><code>pip install feather-format
-</code></pre>
-
-<p>Importamos feather y pandas.</p>
-
-<pre><code class="language-python">import feather
-import pandas as pd
-</code></pre>
-
-<p>Para exportar un data frame de pandas usamos <code>feather.write_feather()</code>.</p>
-
-<pre><code class="language-python">feather.write_feather(mi_df, &quot;mi_df.feather&quot;)
-</code></pre>
-
-<p>Y para importar un data frame usamos <code>feather.read_feather()</code>.</p>
-
-<pre><code class="language-python">mi_df = feather.read_feather(&quot;mi_df.feather)
-</code></pre>
-
-<h2 id="instalación-y-uso-en-r">Instalación y uso en R</h2>
-
+</code></pre><p>Importamos feather y pandas.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> feather
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+</code></pre></div><p>Para exportar un data frame de pandas usamos <code>feather.write_feather()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">feather<span style="color:#f92672">.</span>write_feather(mi_df, <span style="color:#e6db74">&#34;mi_df.feather&#34;</span>)
+</code></pre></div><p>Y para importar un data frame usamos <code> feather.read_feather()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mi_df <span style="color:#f92672">=</span> feather<span style="color:#f92672">.</span>read_feather(<span style="color:#e6db74">&#34;mi_df.feather)</span>
+</code></pre></div><h2 id="instalación-y-uso-en-r">Instalación y uso en R</h2>
 <p>feather se encuentra en CRAN así que lo instalamos con <code>install.packages()</code></p>
-
-<pre><code class="language-r">install.packages(&quot;feather&quot;)
-</code></pre>
-
-<p>Cargamos feather.</p>
-
-<pre><code class="language-r">library(feather)
-</code></pre>
-
-<p>Para exportar un data frame usamos <code>write_feather()</code>.</p>
-
-<pre><code class="language-r">write_feather(mi_df)
-</code></pre>
-
-<p>Para importar un data frame usamos <code>read_feather()</code>.</p>
-
-<pre><code class="language-r">mi_df &lt;- read_feather(&quot;mi_df.feather&quot;)
-</code></pre>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;feather&#34;</span>)
+</code></pre></div><p>Cargamos feather.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(feather)
+</code></pre></div><p>Para exportar un data frame usamos <code>write_feather()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">write_feather</span>(mi_df)
+</code></pre></div><p>Para importar un data frame usamos <code>read_feather()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mi_df <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_feather</span>(<span style="color:#e6db74">&#34;mi_df.feather&#34;</span>)
+</code></pre></div><hr>
 <p>Aunque el formato de archivo feather no es tan universal como CSV, la cantidad de tiempo que ahorro al usarlo compensa esta falta de flexibilidad.</p>
 
     </div>
@@ -251,7 +217,7 @@ import pandas as pd
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/feather_data_frames_para_python_r/">October 11, 2019</a>
+  <a href="../../posts/feather_data_frames_para_python_r/">October 11, 2019</a>
 </span>
 
 
@@ -271,7 +237,7 @@ import pandas as pd
   
   
   
-  <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>, <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/python/" rel="category tag">python</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/r/" rel="category tag">r</a>
 </span>
 
 
@@ -284,7 +250,7 @@ import pandas as pd
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/procesar_csv_admin_django/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/procesar_csv_admin_django/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -294,7 +260,7 @@ import pandas as pd
       
       
       <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/aplicar_funcion_por_renglon_usando_purrr/" rel="next">
+        <a href="https://hal-dev.github.io/hal-til-blog/posts/aplicar_funcion_por_renglon_usando_purrr/" rel="next">
           <span class="meta-nav" aria-hidden="true">Next post</span>
           <span class="screen-reader-text">Next post:</span>
           <br>
@@ -338,7 +304,7 @@ import pandas as pd
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -352,23 +318,23 @@ import pandas as pd
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -380,47 +346,47 @@ import pandas as pd
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -430,7 +396,7 @@ import pandas as pd
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -450,7 +416,7 @@ import pandas as pd
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>

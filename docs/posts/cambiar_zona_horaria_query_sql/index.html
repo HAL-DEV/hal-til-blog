@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/cambiar_zona_horaria_query_sql/">October 22, 2019</a>
+  <a href="../../posts/cambiar_zona_horaria_query_sql/">October 22, 2019</a>
 </span>
 
 
@@ -162,7 +162,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/sql/" rel="category tag">sql</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/sql/" rel="category tag">sql</a>
 </span>
 
 
@@ -173,27 +173,16 @@
     
     <div class="entry-content">
       <p>Es común que las fechas almacenadas en una tabla no se encuentren en la misma zona horaria que las necesitamos.</p>
-
 <p>Podemos cambiar la zona horaria de nuestros datos al realizar un query, sin necesidad de hacer cambios directamente a la tabla que los contiene.</p>
-
 <p>Para ello necesitamos el código de la la zona horario en la que han sido almacenados los datos y el código de la zona a la que deseamos cambiarlos.</p>
-
 <p>Supongamos que nuestros datos se encuentran en <strong>mi_tabla</strong> en una columna llamada <strong>hora registro</strong>. Han sido almacenados con la zona horaria UTC (<em>Coordinated Universal Time</em>, 00:00) y queremos cambiarlos a CDT (<em>Central Daylight Time</em>, -05:00), la zona horaria de la Ciudad de México.</p>
-
 <p>Hacemos lo siguiente.</p>
-
-<pre><code class="language-sql">SELECT (hora_registro AT time ZONE 'utc') AT time ZONE 'cdt' AS hora_registro
-FROM mi_tabla
-</code></pre>
-
-<p>Usamos <code>AT time Zone</code> para declarar la zona horaria almacenada, UTC en nuestro ejemplo, y después una vez, para declarar la zona a la que deseamos cambiar los datos, que en este caso es CDT.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> (hora_registro <span style="color:#66d9ef">AT</span> time <span style="color:#66d9ef">ZONE</span> <span style="color:#e6db74">&#39;utc&#39;</span>) <span style="color:#66d9ef">AT</span> time <span style="color:#66d9ef">ZONE</span> <span style="color:#e6db74">&#39;cdt&#39;</span> <span style="color:#66d9ef">AS</span> hora_registro
+<span style="color:#66d9ef">FROM</span> mi_tabla
+</code></pre></div><p>Usamos <code>AT time Zone</code> para declarar la zona horaria almacenada, UTC en nuestro ejemplo, y después una vez, para declarar la zona a la que deseamos cambiar los datos, que en este caso es CDT.</p>
 <p>En este ejemplo, el resultado será la columna <strong>hora_registro</strong> con un ajuste de -05:00 horas con respecto al original. Una fecha almacenada como 4:00 am del 2 de enero, será devuelta como 11:00 pm del 1 de enero.</p>
-
 <p>El procedimiento anterior funciona en la mayoría de los dialectos de SQL, tanto para datos de tipo Timestamp como Datetime.</p>
-
 <p>Una lista de zonas horarias se encuentra en el siguiente enlace:</p>
-
 <ul>
 <li><a href="https://www.timeanddate.com/time/zones/">https://www.timeanddate.com/time/zones/</a></li>
 </ul>
@@ -211,7 +200,7 @@ FROM mi_tabla
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/cambiar_zona_horaria_query_sql/">October 22, 2019</a>
+  <a href="../../posts/cambiar_zona_horaria_query_sql/">October 22, 2019</a>
 </span>
 
 
@@ -227,7 +216,7 @@ FROM mi_tabla
   
   
   
-  <a href="https://til.hal.com.mx/tags/sql/" rel="category tag">sql</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/sql/" rel="category tag">sql</a>
 </span>
 
 
@@ -240,7 +229,7 @@ FROM mi_tabla
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/aplicar_funcion_por_renglon_usando_purrr/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/aplicar_funcion_por_renglon_usando_purrr/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -250,7 +239,7 @@ FROM mi_tabla
       
       
       <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/" rel="next">
+        <a href="https://hal-dev.github.io/hal-til-blog/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/" rel="next">
           <span class="meta-nav" aria-hidden="true">Next post</span>
           <span class="screen-reader-text">Next post:</span>
           <br>
@@ -294,7 +283,7 @@ FROM mi_tabla
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -308,23 +297,23 @@ FROM mi_tabla
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -336,47 +325,47 @@ FROM mi_tabla
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -386,7 +375,7 @@ FROM mi_tabla
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -406,7 +395,7 @@ FROM mi_tabla
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>

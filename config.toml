@@ -1,11 +1,12 @@
-baseURL = "https://hal-dev.github.io/hal-til-blog"
+baseURL = "https://hal-dev.github.io/hal-til-blog/"
 languageCode = "es-mx"
 title = "HAL Today I Learned"
 theme="twentynineteen-hal"
 publishdir="docs"
 googleAnalytics = "G-BZM6JQ4ZWC"
 disqusShortname = "today-i-learned-hal"
-
+RelativeURLs=true
+CanonifyURLs=true
 
 [params]
     accent_color = "#EE0000"

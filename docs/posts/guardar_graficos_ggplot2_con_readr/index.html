@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/guardar_graficos_ggplot2_con_readr/">January 29, 2020</a>
+  <a href="../../posts/guardar_graficos_ggplot2_con_readr/">January 29, 2020</a>
 </span>
 
 
@@ -170,7 +170,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>, <a href="https://til.hal.com.mx/tags/tidyverse/" rel="category tag">tidyverse</a>, <a href="https://til.hal.com.mx/tags/ggplot2/" rel="category tag">ggplot2</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/r/" rel="category tag">r</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/tidyverse/" rel="category tag">tidyverse</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/ggplot2/" rel="category tag">ggplot2</a>
 </span>
 
 
@@ -181,44 +181,25 @@
     
     <div class="entry-content">
       <p>La principal ventaja de crear gráficos con <em>ggplot2</em> es que tienes control fino de todos los elementos que los conforman.</p>
-
 <p>Esta característica puede convertirse en una desventaja cuando has generado gráficos que contienen un gran número de partes y ajustes para cada una de ellas, pues esto siempre resulta en código más bien complejo.</p>
-
 <p>La principal manera para lidiar con esta complejidad es guardar los gráficos generados con <em>ggplot2</em> en objetos, para así poder manipularlos más adelante, sin necesidad de reusar tanto código.</p>
-
 <p>Por ejemplo, guardamos un plot con sus elementos principales en el objeto <code>mi_plot</code>.</p>
-
-<pre><code class="language-r">mi_plot &lt;- 
-    ggplot(iris) +
-    aes(x = Petal.Width, y = Petal.Length) +
-    geom_point()
-</code></pre>
-
-<p>Y más adelante podemos modificarlo, por ejemplo, agregando un <code>aes</code> nuevo y un tema.</p>
-
-<pre><code class="language-r">mi_plot +
-    aes(color = Species) +
-    theme_bw()
-</code></pre>
-
-<p>Esto es suficiente si estamos trabajando una misma sesión, pero es común que necesitemos un gráfico en múltiples sesiones de trabajo o colaborando con otras personas.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mi_plot <span style="color:#f92672">&lt;-</span> 
+    <span style="color:#a6e22e">ggplot</span>(iris) <span style="color:#f92672">+</span>
+    <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> Petal.Width, y <span style="color:#f92672">=</span> Petal.Length) <span style="color:#f92672">+</span>
+    <span style="color:#a6e22e">geom_point</span>()
+</code></pre></div><p>Y más adelante podemos modificarlo, por ejemplo, agregando un <code>aes</code> nuevo y un tema.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mi_plot <span style="color:#f92672">+</span>
+    <span style="color:#a6e22e">aes</span>(color <span style="color:#f92672">=</span> Species) <span style="color:#f92672">+</span>
+    <span style="color:#a6e22e">theme_bw</span>()
+</code></pre></div><p>Esto es suficiente si estamos trabajando una misma sesión, pero es común que necesitemos un gráfico en múltiples sesiones de trabajo o colaborando con otras personas.</p>
 <p>Una opción común es implemente hacer <code>source()</code> al código que genera los gráficos a usar y así cargarlos a nuestro espacio de trabajo.</p>
-
 <p>Pero, además tenemos la opción de usando las funciones <code>write_rds()</code> y <code>read_rds()</code> de <em>readr</em>, uno de los paquetes del <em>tidyverse</em>, para guardar nuestros gráficos a un archivo como un objeto de R que podemos manipular más adelante.</p>
-
 <p>De este modo, podemos guardar un gráfico, o lista de gráficos, a un archivo de la siguiente manera.</p>
-
-<pre><code class="language-r">write_rds(mi_plot, &quot;mi_plot.rds&quot;)
-</code></pre>
-
-<p>Para después cargarlo a nuestro entorno de trabajo.</p>
-
-<pre><code class="language-r">mi_plot &lt;- read_rds(&quot;mi_plot.rds&quot;)
-</code></pre>
-
-<p>Esta operación no se puede realizar con las funciones <code>save()</code> y <code>readRDS()</code> de <em>base</em>, aunque estas también trabajan con archivos <code>.rds</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">write_rds</span>(mi_plot, <span style="color:#e6db74">&#34;mi_plot.rds&#34;</span>)
+</code></pre></div><p>Para después cargarlo a nuestro entorno de trabajo.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mi_plot <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_rds</span>(<span style="color:#e6db74">&#34;mi_plot.rds&#34;</span>)
+</code></pre></div><p>Esta operación no se puede realizar con las funciones <code>save()</code> y <code>readRDS()</code> de <em>base</em>, aunque estas también trabajan con archivos <code>.rds</code>.</p>
 <p>Naturalmente, hay que tener cuidado de compatibilidad entre versiones de paquetes al exportar e importar archivos <code>.rds</code>, para evitar pérdida de información.</p>
 
     </div>
@@ -234,7 +215,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/guardar_graficos_ggplot2_con_readr/">January 29, 2020</a>
+  <a href="../../posts/guardar_graficos_ggplot2_con_readr/">January 29, 2020</a>
 </span>
 
 
@@ -258,7 +239,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/r/" rel="category tag">r</a>, <a href="https://til.hal.com.mx/tags/tidyverse/" rel="category tag">tidyverse</a>, <a href="https://til.hal.com.mx/tags/ggplot2/" rel="category tag">ggplot2</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/r/" rel="category tag">r</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/tidyverse/" rel="category tag">tidyverse</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/ggplot2/" rel="category tag">ggplot2</a>
 </span>
 
 
@@ -271,7 +252,7 @@
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/regex_en_postgres/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/regex_en_postgres/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -281,7 +262,7 @@
       
       
       <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/crear_secuencia_de_fechas_sql_server/" rel="next">
+        <a href="https://hal-dev.github.io/hal-til-blog/posts/crear_secuencia_de_fechas_sql_server/" rel="next">
           <span class="meta-nav" aria-hidden="true">Next post</span>
           <span class="screen-reader-text">Next post:</span>
           <br>
@@ -325,7 +306,7 @@
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -339,23 +320,23 @@
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -367,47 +348,47 @@
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -417,7 +398,7 @@
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -437,7 +418,7 @@
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>

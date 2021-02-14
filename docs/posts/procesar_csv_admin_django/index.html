@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/procesar_csv_admin_django/">October 5, 2019</a>
+  <a href="../../posts/procesar_csv_admin_django/">October 5, 2019</a>
 </span>
 
 
@@ -174,7 +174,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/django/" rel="category tag">Django</a>, <a href="https://til.hal.com.mx/tags/django-admin/" rel="category tag">Django Admin</a>, <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>, <a href="https://til.hal.com.mx/tags/csv/" rel="category tag">csv</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/django/" rel="category tag">Django</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/django-admin/" rel="category tag">Django Admin</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/python/" rel="category tag">python</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/csv/" rel="category tag">csv</a>
 </span>
 
 
@@ -185,50 +185,46 @@
     
     <div class="entry-content">
       <p>La semana pasada tuve la tarea crear una vista del administrador de Django que procesara un CSV, sin ser explícitamente un modelo (para lo cuál ya existe un paquete -&gt; <a href="https://pypi.org/project/django-csvimport/">Django CSV Import</a>). El caso era que los usuarios finales requieren subir un CSV más amigable que la representación de los datos que creamos con los modelos.</p>
-
-<p>Investigando un poco encontré varias sugerencias que no se adecuaban a nuestro caso y algunas soluciones bastante limitadas, como procesar el archivo dividiéndolo con saltos de línea (&lsquo;cadena&rsquo;.split(&rsquo;\n&rsquo;)): esta solución sólo funciona si estás seguro que el contenido del archivo no contiene saltos de línea en sí mismo.</p>
-
+<p>Investigando un poco encontré varias sugerencias que no se adecuaban a nuestro caso y algunas soluciones bastante limitadas, como procesar el archivo dividiéndolo con saltos de línea (&lsquo;cadena&rsquo;.split('\n&rsquo;)): esta solución sólo funciona si estás seguro que el contenido del archivo no contiene saltos de línea en sí mismo.</p>
 <p>Aquí esta un ejemplo de parte del código que me permitió resolver el problema:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> django <span style="color:#f92672">import</span> forms
 
-<pre><code class="language-python">from django import forms
-
-class CSVContainingForm(forms.ModelForm):
-    &quot;&quot;&quot;
-    Formulario creado a medida que agrega el campo CSV a un formulario de modelo.
-    &quot;&quot;&quot;
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CSVContainingForm</span>(forms<span style="color:#f92672">.</span>ModelForm):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Formulario creado a medida que agrega el campo CSV a un formulario de modelo.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
     
-    class Meta:
-        model = MyModel
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Meta</span>:
+        model <span style="color:#f92672">=</span> MyModel
 
-    csv_file = forms.FileField(
-        label=&quot;Archivo de datos&quot;, 
-        required=False,
+    csv_file <span style="color:#f92672">=</span> forms<span style="color:#f92672">.</span>FileField(
+        label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Archivo de datos&#34;</span>, 
+        required<span style="color:#f92672">=</span>False,
     )
 
-     def save(self, commit=True):
-        &quot;&quot;&quot;
-        Esta función se llamará cuando el modelo sea salvado.
-        &quot;&quot;&quot;
-        # 1) Obtener el archivo del formulario
-        csv_file = self.cleaned_data.get('csv_file', None)
+     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">save</span>(self, commit<span style="color:#f92672">=</span>True):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Esta función se llamará cuando el modelo sea salvado.
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#75715e"># 1) Obtener el archivo del formulario</span>
+        csv_file <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cleaned_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;csv_file&#39;</span>, None)
 
-        if csv_file:
-            # 2) Codificamos
-            with io.TextIOWrapper(csv_file, encoding=&quot;utf-8&quot;) as f:
-                reader = csv.reader(f)
-                # Procesa cada línea del CSV como necesites
+        <span style="color:#66d9ef">if</span> csv_file:
+            <span style="color:#75715e"># 2) Codificamos</span>
+            <span style="color:#66d9ef">with</span> io<span style="color:#f92672">.</span>TextIOWrapper(csv_file, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> f:
+                reader <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>reader(f)
+                <span style="color:#75715e"># Procesa cada línea del CSV como necesites</span>
 
-        return super(PTForm, self).save(commit=commit)
-</code></pre>
-
-<p>Los puntos importantes del código anterior son los siguientes:</p>
-
+        <span style="color:#66d9ef">return</span> super(PTForm, self)<span style="color:#f92672">.</span>save(commit<span style="color:#f92672">=</span>commit)
+</code></pre></div><p>Los puntos importantes del código anterior son los siguientes:</p>
 <ol>
-<li><p><code>csv_file</code> contiene una referencia al archivo que puede ser leída con el método <code>read()</code>, pero no nos sirve porque devuelve un archivo leído como binario sin codificación, el módulo CSV no puede procesar.</p></li>
-
-<li><p><code>io.TextIOWrapper</code> nos permite leer el archivo y codificarlo como UTF-8, listo para ser procesado por el paquete <code>csv</code> de python.</p></li>
+<li>
+<p><code>csv_file</code> contiene una referencia al archivo que puede ser leída con el método <code>read()</code>, pero no nos sirve porque devuelve un archivo leído como binario sin codificación, el módulo CSV no puede procesar.</p>
+</li>
+<li>
+<p><code>io.TextIOWrapper</code> nos permite leer el archivo y codificarlo como UTF-8, listo para ser procesado por el paquete <code>csv</code> de python.</p>
+</li>
 </ol>
-
 <p>Estos son los dos puntos importantes.
 Este formulario puede ser usado para reemplazar el formulario default de un <code>ModelAdmin</code>.</p>
 
@@ -245,7 +241,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/procesar_csv_admin_django/">October 5, 2019</a>
+  <a href="../../posts/procesar_csv_admin_django/">October 5, 2019</a>
 </span>
 
 
@@ -273,7 +269,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
   
   
   
-  <a href="https://til.hal.com.mx/tags/django/" rel="category tag">Django</a>, <a href="https://til.hal.com.mx/tags/django-admin/" rel="category tag">Django Admin</a>, <a href="https://til.hal.com.mx/tags/python/" rel="category tag">python</a>, <a href="https://til.hal.com.mx/tags/csv/" rel="category tag">csv</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/django/" rel="category tag">Django</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/django-admin/" rel="category tag">Django Admin</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/python/" rel="category tag">python</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/csv/" rel="category tag">csv</a>
 </span>
 
 
@@ -286,7 +282,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/presentacion/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/presentacion/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -296,7 +292,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
       
       
       <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/feather_data_frames_para_python_r/" rel="next">
+        <a href="https://hal-dev.github.io/hal-til-blog/posts/feather_data_frames_para_python_r/" rel="next">
           <span class="meta-nav" aria-hidden="true">Next post</span>
           <span class="screen-reader-text">Next post:</span>
           <br>
@@ -340,7 +336,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -354,23 +350,23 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -382,47 +378,47 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -432,7 +428,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -452,7 +448,7 @@ Este formulario puede ser usado para reemplazar el formulario default de un <cod
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>

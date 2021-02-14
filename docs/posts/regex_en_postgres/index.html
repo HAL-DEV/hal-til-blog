@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/regex_en_postgres/">November 16, 2019</a>
+  <a href="../../posts/regex_en_postgres/">November 16, 2019</a>
 </span>
 
 
@@ -166,7 +166,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/postgres/" rel="category tag">postgres</a>, <a href="https://til.hal.com.mx/tags/postgresql/" rel="category tag">postgresql</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/postgres/" rel="category tag">postgres</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/postgresql/" rel="category tag">postgresql</a>
 </span>
 
 
@@ -177,35 +177,21 @@
     
     <div class="entry-content">
       <p>Al hacer un query es frecuente que necesitemos encontrar registros de texto que coincidan con algunas reglas. Lo más común es buscar registros que contienen, inician o terminan con una cadena de texto en particular.</p>
-
 <p>Para esta tarea, generalmente usamos el operador <code>LIKE</code> con algunos comodines (wildcards).</p>
-
 <p>Por ejemplo, usamos lo siguiente para buscar los registros en la columna &ldquo;email&rdquo; de la tabla &ldquo;clientes&rdquo;, que terminen con &ldquo;dominio.com&rdquo;.</p>
-
-<pre><code class="language-postgresql">SELECT * FROM clientes
-WHERE email LIKE '%dominio.com'
-</code></pre>
-
-<p>Sin embargo, hay ocasiones en el texto que buscamos debe coincidir con reglas más complejas. En estos casos usamos expresiones regulares (regex).</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-postgresql" data-lang="postgresql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> clientes
+<span style="color:#66d9ef">WHERE</span> email <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%dominio.com&#39;</span>
+</code></pre></div><p>Sin embargo, hay ocasiones en el texto que buscamos debe coincidir con reglas más complejas. En estos casos usamos expresiones regulares (regex).</p>
 <p>En postgres tenemos el operador <code>SIMILAR TO</code> para buscar usando regex.</p>
-
 <p>Por ejemplo, supongamos que busco correos electrónicos con un nombre de dominio en particular, pero que puede terminar en &ldquo;com&rdquo;, &ldquo;net&rdquo; o &ldquo;mx&rdquo;.</p>
-
 <p>Puedo realizar esta tarea de la siguiente manera.</p>
-
-<pre><code class="language-postgresql">SELECT * FROM clientes
-WHERE email SIMILAR TO '%dominio.(com|net|mx)'
-</code></pre>
-
-<p>Notarás que de usamos un wildcard de SQL en la cadena que buscamo. <code>SIMILAR TO</code> es un híbrido entre <code>LIKE</code> y regex, lo cual puede ser un poco confuso y afecta a su desempeño.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-postgresql" data-lang="postgresql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> clientes
+<span style="color:#66d9ef">WHERE</span> email <span style="color:#66d9ef">SIMILAR</span> <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;%dominio.(com|net|mx)&#39;</span>
+</code></pre></div><p>Notarás que de usamos un wildcard de SQL en la cadena que buscamo. <code>SIMILAR TO</code> es un híbrido entre <code>LIKE</code> y regex, lo cual puede ser un poco confuso y afecta a su desempeño.</p>
 <p>Por fortuna, contamos con el operador <code>~</code>. Este operador es más eficiente que <code>SIMILAR TO</code> y únicamente acepta regex por lo que es más consistente.</p>
-
-<pre><code class="language-postgresql">SELECT * FROM clientes
-WHERE email ~'dominio.(com|net|mx)$'
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-postgresql" data-lang="postgresql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> clientes
+<span style="color:#66d9ef">WHERE</span> email <span style="color:#f92672">~</span><span style="color:#e6db74">&#39;dominio.(com|net|mx)$&#39;</span>
+</code></pre></div>
     </div>
     <div class="entry-footer">
       <span class="posted-on">
@@ -219,7 +205,7 @@ WHERE email ~'dominio.(com|net|mx)$'
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/regex_en_postgres/">November 16, 2019</a>
+  <a href="../../posts/regex_en_postgres/">November 16, 2019</a>
 </span>
 
 
@@ -239,7 +225,7 @@ WHERE email ~'dominio.(com|net|mx)$'
   
   
   
-  <a href="https://til.hal.com.mx/tags/postgres/" rel="category tag">postgres</a>, <a href="https://til.hal.com.mx/tags/postgresql/" rel="category tag">postgresql</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/postgres/" rel="category tag">postgres</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/postgresql/" rel="category tag">postgresql</a>
 </span>
 
 
@@ -252,7 +238,7 @@ WHERE email ~'dominio.(com|net|mx)$'
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -262,7 +248,7 @@ WHERE email ~'dominio.(com|net|mx)$'
       
       
       <div class="nav-next">
-        <a href="https://til.hal.com.mx/posts/guardar_graficos_ggplot2_con_readr/" rel="next">
+        <a href="https://hal-dev.github.io/hal-til-blog/posts/guardar_graficos_ggplot2_con_readr/" rel="next">
           <span class="meta-nav" aria-hidden="true">Next post</span>
           <span class="screen-reader-text">Next post:</span>
           <br>
@@ -306,7 +292,7 @@ WHERE email ~'dominio.(com|net|mx)$'
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -320,23 +306,23 @@ WHERE email ~'dominio.(com|net|mx)$'
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -348,47 +334,47 @@ WHERE email ~'dominio.(com|net|mx)$'
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -398,7 +384,7 @@ WHERE email ~'dominio.(com|net|mx)$'
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -418,7 +404,7 @@ WHERE email ~'dominio.(com|net|mx)$'
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>

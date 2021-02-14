@@ -9,7 +9,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/main.min.1848cf871ac440074c81089a4bb319605cef1ff31134fd952d226f0a41528fa0.css" integrity="sha256-GEjPhxrEQAdMgQiaS7MZYFzvH/MRNP2VLSJvCkFSj6A=" media="screen">
+  <link rel="stylesheet" href="../../css/main.min.c80b4835f6c220a4c3667e4872c984f56565a398c484452e65f9b0539a6c42f8.css" integrity="sha256-yAtINfbCIKTDZn5IcsmE9WVlo5jEhEUuZfmwU5psQvg=" media="screen">
 
   
   
@@ -18,7 +18,7 @@
   
   
   <link rel="stylesheet"
-        href='/highlight/styles/night-owl.css'>
+        href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/night-owl.min.css'>
   
 
   
@@ -44,7 +44,7 @@
       <div class="site-branding-container">
         <div class="site-branding">
   <h1 class="site-title">
-    <a href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>
+    <a href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>
   </h1>
 
   
@@ -146,7 +146,7 @@
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/crear_secuencia_de_fechas_sql_server/">March 29, 2020</a>
+  <a href="../../posts/crear_secuencia_de_fechas_sql_server/">March 29, 2020</a>
 </span>
 
 
@@ -166,7 +166,7 @@
   
   
   
-  <a href="https://til.hal.com.mx/tags/sql/" rel="category tag">sql</a>, <a href="https://til.hal.com.mx/tags/sql-server/" rel="category tag">sql server</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/sql/" rel="category tag">sql</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/sql-server/" rel="category tag">sql server</a>
 </span>
 
 
@@ -177,9 +177,7 @@
     
     <div class="entry-content">
       <p>Crear una secuencia de fechas durante una consulta es una herramienta útil para crear series de tiempo completas, realizar comparaciones y verificar la integridad de datos, entre otras aplicaciones.</p>
-
 <p>Por ejemplo, podemos pasar de tener datos como los siguientes:</p>
-
 <table>
 <thead>
 <tr>
@@ -187,27 +185,22 @@
 <th>valor</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>2020-01-01</td>
 <td>1</td>
 </tr>
-
 <tr>
 <td>2020-01-03</td>
 <td>1</td>
 </tr>
-
 <tr>
 <td>2020-01-05</td>
 <td>1</td>
 </tr>
 </tbody>
 </table>
-
 <p>A datos como estos:</p>
-
 <table>
 <thead>
 <tr>
@@ -215,94 +208,71 @@
 <th>valor</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>2020-01-01</td>
 <td>1</td>
 </tr>
-
 <tr>
 <td>2020-01-02</td>
 <td>0</td>
 </tr>
-
 <tr>
 <td>2020-01-03</td>
 <td>1</td>
 </tr>
-
 <tr>
 <td>2020-01-04</td>
 <td>0</td>
 </tr>
-
 <tr>
 <td>2020-01-05</td>
 <td>1</td>
 </tr>
 </tbody>
 </table>
-
 <p>En otras implementaciones de SQL esta es una tarea sencilla. Postgres, por ejemplo, tiene la función <code>GENERATE_SERIES()</code> que facilita esta tarea. En SQL Server esto es un poco más elaborado.</p>
-
 <p>Obtenemos una secuencia de fechas del primero al cinco de enero de 2020 con el siguiente bloque de código.</p>
-
-<pre><code class="language-sql">WITH calendario As
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">WITH</span> calendario <span style="color:#66d9ef">As</span>
 (
-	SELECT DATEADD(day, 1, '2019-12-31') AS fecha
-	UNION ALL
-	SELECT DATEADD(day, 1, fecha) FROM calendario
-	WHERE fecha &lt; '2020-01-05'
+	<span style="color:#66d9ef">SELECT</span> DATEADD(<span style="color:#66d9ef">day</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2019-12-31&#39;</span>) <span style="color:#66d9ef">AS</span> fecha
+	<span style="color:#66d9ef">UNION</span> <span style="color:#66d9ef">ALL</span>
+	<span style="color:#66d9ef">SELECT</span> DATEADD(<span style="color:#66d9ef">day</span>, <span style="color:#ae81ff">1</span>, fecha) <span style="color:#66d9ef">FROM</span> calendario
+	<span style="color:#66d9ef">WHERE</span> fecha <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">&#39;2020-01-05&#39;</span>
 )
-SELECT * FROM calendario
-OPTION (MAXRECURSION 5)
-</code></pre>
-
-<p>Lo que estamos haciendo es crear una vista temporal (Common table expression, CTE) llamada <code>calendario</code> con <code>WITH</code>, esta tiene una columna &ldquo;fecha&rdquo;, con un reglón que contiene el primer día después de la fecha que especifiquemos.</p>
-
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> calendario
+<span style="color:#66d9ef">OPTION</span> (MAXRECURSION <span style="color:#ae81ff">5</span>)
+</code></pre></div><p>Lo que estamos haciendo es crear una vista temporal (Common table expression, CTE) llamada <code>calendario</code> con <code>WITH</code>, esta tiene una columna &ldquo;fecha&rdquo;, con un reglón que contiene el primer día después de la fecha que especifiquemos.</p>
 <p>Hemos especificado &lsquo;2019-12-31&rsquo; para que la primera fecha sea el primero de enero de 2020.</p>
-
 <p>Después, a esta vista, se le agregan renglones de manera recursiva usando <code>UNION ALL</code>, cada uno con fechas un día después del anterior, hasta llegar al día que hemos especificado. En este caso &lsquo;2020-01-05&rsquo;.</p>
-
 <p>Es muy importante incluir al final de nuestra consulta la declaración <code>OPTION (MAXRECURSION &lt;n&gt;)</code>.</p>
-
 <p>Esta declaración indica el número máximo de recursiones permitidas para generar nuestra secuencia de fecha, protegiéndonos de errores.</p>
-
 <p>El número debe ser mayor o igual a la cantidad de días que deseamos incluir en nuestra secuencia, de lo contrario se nos devolverá un error.</p>
-
 <p>El resultado de la consulta anterior será el siguiente, que podremos usar durante el resto de la consulta.</p>
-
 <table>
 <thead>
 <tr>
 <th>fecha</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>2020-01-01</td>
 </tr>
-
 <tr>
 <td>2020-01-02</td>
 </tr>
-
 <tr>
 <td>2020-01-03</td>
 </tr>
-
 <tr>
 <td>2020-01-04</td>
 </tr>
-
 <tr>
 <td>2020-01-05</td>
 </tr>
 </tbody>
 </table>
-
 <p>Si deseamos crear una secuencia de fechas que termine en el día de hoy, podemos usar la función <code>GETDATE()</code> para obtener un dato de fecha del día actual.</p>
 
     </div>
@@ -318,7 +288,7 @@ OPTION (MAXRECURSION 5)
   <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
 </svg>
   
-  <a href="/posts/crear_secuencia_de_fechas_sql_server/">March 29, 2020</a>
+  <a href="../../posts/crear_secuencia_de_fechas_sql_server/">March 29, 2020</a>
 </span>
 
 
@@ -338,7 +308,7 @@ OPTION (MAXRECURSION 5)
   
   
   
-  <a href="https://til.hal.com.mx/tags/sql/" rel="category tag">sql</a>, <a href="https://til.hal.com.mx/tags/sql-server/" rel="category tag">sql server</a>
+  <a href="https://hal-dev.github.io/hal-til-blog/tags/sql/" rel="category tag">sql</a>, <a href="https://hal-dev.github.io/hal-til-blog/tags/sql-server/" rel="category tag">sql server</a>
 </span>
 
 
@@ -351,7 +321,7 @@ OPTION (MAXRECURSION 5)
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="https://til.hal.com.mx/posts/guardar_graficos_ggplot2_con_readr/" rel="prev">
+          <a href="https://hal-dev.github.io/hal-til-blog/posts/guardar_graficos_ggplot2_con_readr/" rel="prev">
             <span class="meta-nav" aria-hidden="true">Previous post</span>
             <span class="screen-reader-text">Previous post:</span>
             <br>
@@ -396,7 +366,7 @@ OPTION (MAXRECURSION 5)
 		<aside class="widget-area" role="complementary" aria-label="Footer">
   <div class="widget-column">
     <section id="search" class="widget widget_search">
-      <form role="search" class="search-form" action="https://til.hal.com.mx/search">
+      <form role="search" class="search-form" action="https://hal-dev.github.io/hal-til-blog/search">
         <label>
           <span class="screen-reader-text">Search for:</span>
           <input type="search" class="search-field" placeholder="Search ..." value name="s">
@@ -410,23 +380,23 @@ OPTION (MAXRECURSION 5)
       <ul>
         
         <li>
-          <a href="/posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
+          <a href="../../posts/crear_secuencia_de_fechas_sql_server/">Crear una secuencia de fechas en SQL Server</a>
         </li>
         
         <li>
-          <a href="/posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
+          <a href="../../posts/guardar_graficos_ggplot2_con_readr/">Guardar gráficos de ggplot2 con readr</a>
         </li>
         
         <li>
-          <a href="/posts/regex_en_postgres/">regex en postgres</a>
+          <a href="../../posts/regex_en_postgres/">regex en postgres</a>
         </li>
         
         <li>
-          <a href="/posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
+          <a href="../../posts/pip-check_encontrar_actualizaciones_de_paquetes_python/">pip-check para encontrar actualizaciones de paquetes de Python</a>
         </li>
         
         <li>
-          <a href="/posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
+          <a href="../../posts/cambiar_zona_horaria_query_sql/">Cambiar la zona horaria de datos Timestamp o Detetime en un query de SQL</a>
         </li>
         
       </ul>
@@ -438,47 +408,47 @@ OPTION (MAXRECURSION 5)
         <ul>
           
           <li class="cat-item">
-            <a href="/tags/csv/">csv</a>
+            <a href="../../tags/csv/">csv</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django/">Django</a>
+            <a href="../../tags/django/">Django</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/django-admin/">Django Admin</a>
+            <a href="../../tags/django-admin/">Django Admin</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/ggplot2/">ggplot2</a>
+            <a href="../../tags/ggplot2/">ggplot2</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgres/">postgres</a>
+            <a href="../../tags/postgres/">postgres</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/postgresql/">postgresql</a>
+            <a href="../../tags/postgresql/">postgresql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/python/">python</a>
+            <a href="../../tags/python/">python</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/r/">r</a>
+            <a href="../../tags/r/">r</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql/">sql</a>
+            <a href="../../tags/sql/">sql</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/sql-server/">sql server</a>
+            <a href="../../tags/sql-server/">sql server</a>
           </li>
           
           <li class="cat-item">
-            <a href="/tags/tidyverse/">tidyverse</a>
+            <a href="../../tags/tidyverse/">tidyverse</a>
           </li>
           
         </ul>
@@ -488,7 +458,7 @@ OPTION (MAXRECURSION 5)
 </aside>
 
 		<div class="site-info">
-			<a class="site-name" href="https://til.hal.com.mx/" rel="home">HAL Today I Learned</a>,
+			<a class="site-name" href="https://hal-dev.github.io/hal-til-blog/" rel="home">HAL Today I Learned</a>,
 			<a href="https://gohugo.io" class="imprint">
 				Proudly powered by Hugo
 			</a>
@@ -508,7 +478,7 @@ OPTION (MAXRECURSION 5)
   
 
   
-    <script src="/highlight/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script>
     hljs.initHighlightingOnLoad();
     </script>
